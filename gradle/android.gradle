@@ -1,0 +1,61 @@
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
+  }
+
+  /*dexOptions {
+    preDexLibraries rootProject.ext.preDexLibraries
+  }*/
+
+  packagingOptions {
+    exclude 'LICENSE.txt'
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+    debug {
+      testCoverageEnabled true
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility rootProject.ext.sourceCompatibilityVersion
+    targetCompatibility rootProject.ext.targetCompatibilityVersion
+  }
+
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+    disable 'InvalidPackage', 'GradleCompatible'
+  }
+}
+
+//spotless {
+//  java {
+//    googleJavaFormat()
+//    target '**/*.java'
+//    licenseHeader getLicenseText()
+//  }
+//}
+
+def getLicenseText() {
+  def rawTextLines = rootProject.file('LICENSE.md').text.split('\n')
+  def text = ""
+  for (def line : rawTextLines) {
+    if (line.trim().length() == 0) {
+      text = text + '\n *' + line
+    } else {
+      text = text + '\n * ' + line
+    }
+  }
+  return '/**' + text + '\n */'
+}
