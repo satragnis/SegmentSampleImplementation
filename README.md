@@ -1,4 +1,4 @@
-# SegmentOpensourceImplementation
+# Segment Opensource Implementation
 This is a sample opensource implementation of Segment using your own analytics setup
 For client side initialisation and reporting events refer the following 
 https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/
